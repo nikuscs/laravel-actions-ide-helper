@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'paths' => 'app/Actions',
+    'path' => 'app/Actions',
     'file_name' => '_ide_helper_actions.php',
 ];

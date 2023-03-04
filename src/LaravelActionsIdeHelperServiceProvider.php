@@ -12,7 +12,7 @@ class LaravelActionsIdeHelperServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('laravel-actions-ide-helper')
-            ->hasConfigFile('actions-ide-helper')
+            ->hasConfigFile()
             ->hasCommand(LaravelActionsIdeHelperCommand::class);
     }
 }

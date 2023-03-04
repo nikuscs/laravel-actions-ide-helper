@@ -16,9 +16,9 @@ class LaravelActionsIdeHelperCommand extends Command
 
     public function handle()
     {
-        $actionsPath = Path::join(base_path(config('actions-ide-helper.path','app/Actions')));
+        $actionsPath = Path::join(base_path(config('laravel-actions-ide-helper.path','app/Actions')));
 
-        $outfile = Path::join(base_path(), '/'.config('actions-ide-helper.file_name','_ide_helper_actions.php'));
+        $outfile = Path::join(base_path(), '/'.config('laravel-actions-ide-helper.file_name','_ide_helper_actions.php'));
 
         $actionInfos = ActionInfoFactory::create($actionsPath);
 

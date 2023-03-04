@@ -8,6 +8,7 @@ This is a fork of `wulfheart/laravel-actions-ide-helper` with the following chan
 
 - Updated Deps to support Laravel 10
 - Updated Deps to support Laravel Actions 2.5
+- Configurable scan path & filename
 
 ## Installation
 

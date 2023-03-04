@@ -1,5 +1,6 @@
 <?php
-// config for Wulfheart/ClassName
-return [
 
+return [
+    'paths' => 'app/Actions',
+    'file_name' => '_ide_helper_actions.php',
 ];

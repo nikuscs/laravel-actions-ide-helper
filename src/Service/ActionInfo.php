@@ -3,7 +3,6 @@
 namespace Wulfheart\LaravelActionsIdeHelper\Service;
 
 use Illuminate\Support\Str;
-use JetBrains\PhpStorm\Pure;
 use Lorisleiva\Actions\Concerns\AsCommand;
 use Lorisleiva\Actions\Concerns\AsController;
 use Lorisleiva\Actions\Concerns\AsFake;
@@ -20,13 +19,21 @@ use Wulfheart\LaravelActionsIdeHelper\Service\Generator\DocBlock\AsObjectGenerat
 final class ActionInfo
 {
     public string $name;
+
     public string $namespace;
+
     public string $fqsen;
+
     public bool $asObject;
+
     public bool $asController;
+
     public bool $asJob;
+
     public bool $asListener;
+
     public bool $asCommand;
+
     public Class_ $classInfo;
 
     const ALL_TRAITS = [
@@ -47,7 +54,7 @@ final class ActionInfo
     {
         $this->fqsen = $name;
         $this->name = class_basename($name);
-        $this->namespace = Str::of($name)->beforeLast('\\' . $this->name);
+        $this->namespace = Str::of($name)->beforeLast('\\'.$this->name);
 
         return $this;
     }
@@ -90,9 +97,9 @@ final class ActionInfo
     public function setClassInfo(Class_ $classInfo): ActionInfo
     {
         $this->classInfo = $classInfo;
+
         return $this;
     }
-
 
     /**
      * @return \Wulfheart\LaravelActionsIdeHelper\Service\Generator\DocBlock\DocBlockGeneratorInterface[]
@@ -107,7 +114,4 @@ final class ActionInfo
             ($this->asObject ? [AsObjectGenerator::class] : []),
         );
     }
-
-
-
 }

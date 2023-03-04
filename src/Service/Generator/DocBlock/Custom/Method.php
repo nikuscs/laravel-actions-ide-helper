@@ -2,7 +2,6 @@
 
 namespace Wulfheart\LaravelActionsIdeHelper\Service\Generator\DocBlock\Custom;
 
-use phpDocumentor\Reflection\DocBlock\Description;
 use phpDocumentor\Reflection\DocBlock\Tags\BaseTag;
 use phpDocumentor\Reflection\Php\Argument;
 use phpDocumentor\Reflection\Type;
@@ -12,10 +11,7 @@ class Method extends BaseTag
     protected $name = 'method';
 
     /**
-     * @param  string  $methodName
      * @param  array<\phpDocumentor\Reflection\Php\Argument>  $arguments
-     * @param  \phpDocumentor\Reflection\Type|null  $returnType
-     * @param  bool  $static
      * @param  \phpDocumentor\Reflection\DocBlock\Description|null  $description
      */
     public function __construct(
@@ -25,7 +21,6 @@ class Method extends BaseTag
         protected bool $static = false,
         protected $description = null
     ) {
-
     }
 
     public static function create(string $body)
@@ -36,18 +31,17 @@ class Method extends BaseTag
     public function __toString(): string
     {
         $s = '';
-        if($this->static){
+        if ($this->static) {
             $s .= 'static ';
         }
 
-        if($this->returnType){
-            $s .= (string) $this->returnType . ' ';
+        if ($this->returnType) {
+            $s .= (string) $this->returnType.' ';
         }
 
+        $s .= $this->methodName.'(';
 
-        $s .= $this->methodName . '(';
-
-        $s .= collect($this->arguments)->map(fn(Argument $arg) => $this->stringifyArgument($arg))->implode(', ');
+        $s .= collect($this->arguments)->map(fn (Argument $arg) => $this->stringifyArgument($arg))->implode(', ');
 
         $s .= ')';
 
@@ -56,25 +50,25 @@ class Method extends BaseTag
 
     protected function stringifyArgument(Argument $argument): string
     {
-        $s = "";
+        $s = '';
         $type = $argument->getType();
         if ($type) {
-            $s .= (string) $type." ";
+            $s .= (string) $type.' ';
         }
 
         if ($argument->isVariadic()) {
-            $s .= "...";
+            $s .= '...';
         }
 
         if ($argument->isByReference()) {
-            $s .= "&";
+            $s .= '&';
         }
 
         $s .= '$'.$argument->getName();
 
         $default = $argument->getDefault();
         if ($default) {
-            $s .= ' = ' . $default;
+            $s .= ' = '.$default;
         }
 
         return $s;
